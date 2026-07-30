@@ -12,6 +12,11 @@ def create_folder(parent_directory, folder_name):
     
     return full_path
 
+def create_fa_exp_folder(output_file_path, degree, num_nodes, num_reps, seed):
+    node_max = 2*num_nodes + 2
+    exp_folder = create_folder(output_file_path, f"{degree}-Regular Graph, Max Nodes = {node_max}, Max Depth = {num_reps}, Master Seed = {seed}")
+    return exp_folder
+
 # Creates the entire file structure for the experimental data to be stored. Returns the file paths of each folder.
 def create_experiment_folder(output_file_path, master_seed, graph_degree, num_nodes, num_reps, num_sigmas):
     node_folder = create_folder(output_file_path, f"Nodes = {num_nodes}, {graph_degree} Regular, Max Depth = {num_reps}, Sigma Count = {num_sigmas}, Master Seed = {master_seed}")

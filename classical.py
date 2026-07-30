@@ -1,4 +1,5 @@
 import numpy as np
+import networkx as nx
 
 # Returns binary string for n with length num_nodes.
 def bit(n, num_bits):
@@ -7,6 +8,11 @@ def bit(n, num_bits):
 # Returns binary string for n with length num_nodes in vector format.
 def bitfield(n, num_bits):
     return np.array([int(bit) for bit in np.binary_repr(n, num_bits)],dtype=int)
+
+# Calculates cut value for a given bitstring.
+def cut_size_from_graph(graph, bitstring):
+    assignment = [node for node, bit in zip(graph.nodes(), bitstring[::-1]) if bit == "1"]
+    return nx.cut_size(graph, assignment, weight="weight")
 
 # Calculates the weighted objective function for an input bitstring X.
 def weighted_objective_value(x, w):
